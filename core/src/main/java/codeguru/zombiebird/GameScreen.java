@@ -5,6 +5,7 @@ import com.badlogic.gdx.Screen;
 
 import codeguru.zombiebird.gameworld.GameRenderer;
 import codeguru.zombiebird.gameworld.GameWorld;
+import codeguru.zombiebird.helpers.InputHandler;
 
 public class GameScreen implements Screen {
     private final GameWorld world;
@@ -18,6 +19,8 @@ public class GameScreen implements Screen {
         int midPointY = (int) (gameHeight / 2);
         world = new GameWorld(midPointY);
         renderer = new GameRenderer(world);
+
+        Gdx.input.setInputProcessor(new InputHandler(world.getBird()));
     }
 
     @Override
