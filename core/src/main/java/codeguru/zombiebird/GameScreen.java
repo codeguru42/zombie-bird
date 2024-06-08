@@ -9,7 +9,7 @@ import codeguru.zombiebird.gameworld.GameWorld;
 
 public class GameScreen implements Screen {
     private final GameWorld world = new GameWorld();
-    private final GameRenderer renderer = new GameRenderer();
+    private final GameRenderer renderer = new GameRenderer(world);
 
     public GameScreen() {
         Gdx.app.log("GameScreen", "Attached");
