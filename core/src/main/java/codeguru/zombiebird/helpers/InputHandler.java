@@ -13,8 +13,7 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        myBird.onClick();
-        return true;
+        return false;
     }
 
     @Override
@@ -29,7 +28,8 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
-        return false;
+        myBird.onClick();
+        return true;
     }
 
     @Override
