@@ -2,6 +2,7 @@ package codeguru.zombiebird.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl3.Lwjgl3WindowConfiguration;
 
 import codeguru.zombiebird.ZombieBirdGame;
 
@@ -16,7 +17,10 @@ public class Lwjgl3Launcher {
     }
 
     private static Lwjgl3Application createApplication() {
-        return new Lwjgl3Application(new ZombieBirdGame(), getDefaultConfiguration());
+        Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
+        config.setTitle("Zombie Bird");
+        config.setWindowedMode(272, 408);
+        return new Lwjgl3Application(new ZombieBirdGame(), config);
     }
 
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
