@@ -5,14 +5,17 @@ import org.robovm.apple.uikit.UIApplication;
 
 import com.badlogic.gdx.backends.iosrobovm.IOSApplication;
 import com.badlogic.gdx.backends.iosrobovm.IOSApplicationConfiguration;
-import codeguru.zombiebird.ZombieBird;
 
-/** Launches the iOS (RoboVM) application. */
+import codeguru.zombiebird.ZombieBirdGame;
+
+/**
+ * Launches the iOS (RoboVM) application.
+ */
 public class IOSLauncher extends IOSApplication.Delegate {
     @Override
     protected IOSApplication createApplication() {
         IOSApplicationConfiguration configuration = new IOSApplicationConfiguration();
-        return new IOSApplication(new ZombieBird(), configuration);
+        return new IOSApplication(new ZombieBirdGame(), configuration);
     }
 
     public static void main(String[] argv) {

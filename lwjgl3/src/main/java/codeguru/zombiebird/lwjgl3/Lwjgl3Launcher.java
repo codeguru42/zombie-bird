@@ -2,17 +2,21 @@ package codeguru.zombiebird.lwjgl3;
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
-import codeguru.zombiebird.ZombieBird;
 
-/** Launches the desktop (LWJGL3) application. */
+import codeguru.zombiebird.ZombieBirdGame;
+
+/**
+ * Launches the desktop (LWJGL3) application.
+ */
 public class Lwjgl3Launcher {
     public static void main(String[] args) {
-        if (StartupHelper.startNewJvmIfRequired()) return; // This handles macOS support and helps on Windows.
+        if (StartupHelper.startNewJvmIfRequired())
+            return; // This handles macOS support and helps on Windows.
         createApplication();
     }
 
     private static Lwjgl3Application createApplication() {
-        return new Lwjgl3Application(new ZombieBird(), getDefaultConfiguration());
+        return new Lwjgl3Application(new ZombieBirdGame(), getDefaultConfiguration());
     }
 
     private static Lwjgl3ApplicationConfiguration getDefaultConfiguration() {
