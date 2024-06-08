@@ -4,7 +4,13 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 
+import codeguru.zombiebird.gameworld.GameRenderer;
+import codeguru.zombiebird.gameworld.GameWorld;
+
 public class GameScreen implements Screen {
+    private final GameWorld world = new GameWorld();
+    private final GameRenderer renderer = new GameRenderer();
+
     public GameScreen() {
         Gdx.app.log("GameScreen", "Attached");
     }
@@ -16,9 +22,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(10 / 255.0f, 15 / 255.0f, 230 / 255.0f, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        Gdx.app.log("GameScreen FPS", (1 / delta) + "");
+        world.update(delta);
+        renderer.render();
     }
 
     @Override
