@@ -7,11 +7,17 @@ import codeguru.zombiebird.gameworld.GameRenderer;
 import codeguru.zombiebird.gameworld.GameWorld;
 
 public class GameScreen implements Screen {
-    private final GameWorld world = new GameWorld();
-    private final GameRenderer renderer = new GameRenderer(world);
+    private final GameWorld world;
+    private final GameRenderer renderer;
 
     public GameScreen() {
-        Gdx.app.log("GameScreen", "Attached");
+        float screenWidth = Gdx.graphics.getWidth();
+        float screenHeight = Gdx.graphics.getHeight();
+        float gameWidth = 136;
+        float gameHeight = screenHeight / (screenWidth / gameWidth);
+        int midPointY = (int) (gameHeight / 2);
+        world = new GameWorld(midPointY);
+        renderer = new GameRenderer(world);
     }
 
     @Override
