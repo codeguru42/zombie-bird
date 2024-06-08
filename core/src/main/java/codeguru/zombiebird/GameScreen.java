@@ -2,7 +2,6 @@ package codeguru.zombiebird;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 
 import codeguru.zombiebird.gameworld.GameRenderer;
 import codeguru.zombiebird.gameworld.GameWorld;
