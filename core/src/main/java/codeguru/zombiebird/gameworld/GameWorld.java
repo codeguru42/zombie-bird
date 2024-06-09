@@ -2,11 +2,14 @@ package codeguru.zombiebird.gameworld;
 
 import codeguru.zombiebird.gameobjects.Bird;
 import codeguru.zombiebird.gameobjects.ScrollHandler;
+import codeguru.zombiebird.helpers.AssetLoader;
 
 public class GameWorld {
     private final Bird bird;
 
     private final ScrollHandler scroller;
+
+    private boolean isAlive = true;
 
 
     public GameWorld(int midPointY) {
@@ -18,8 +21,10 @@ public class GameWorld {
         bird.update(delta);
         scroller.update(delta);
 
-        if (scroller.collides(bird)) {
+        if (isAlive && scroller.collides(bird)) {
             scroller.stop();
+            AssetLoader.dead.play();
+            isAlive = false;
         }
     }
 
