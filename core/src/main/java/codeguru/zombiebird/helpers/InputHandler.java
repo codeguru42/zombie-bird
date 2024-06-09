@@ -3,12 +3,15 @@ package codeguru.zombiebird.helpers;
 import com.badlogic.gdx.InputProcessor;
 
 import codeguru.zombiebird.gameobjects.Bird;
+import codeguru.zombiebird.gameworld.GameWorld;
 
 public class InputHandler implements InputProcessor {
-    private Bird myBird;
+    private final GameWorld myWorld;
+    private final Bird myBird;
 
-    public InputHandler(Bird myBird) {
-        this.myBird = myBird;
+    public InputHandler(GameWorld myWorld) {
+        this.myWorld = myWorld;
+        this.myBird = myWorld.getBird();
     }
 
     @Override
@@ -28,7 +31,15 @@ public class InputHandler implements InputProcessor {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        if (myWorld.isReady()) {
+            myWorld.start();
+        }
+
         myBird.onClick();
+
+        if (myWorld.isGameOver()) {
+            myWorld.restart();
+        }
         return true;
     }
 

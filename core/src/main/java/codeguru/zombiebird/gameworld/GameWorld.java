@@ -8,8 +8,10 @@ import codeguru.zombiebird.gameobjects.ScrollHandler;
 import codeguru.zombiebird.helpers.AssetLoader;
 
 public class GameWorld {
+
+
     public enum GameState {
-        READY, RUNNING, GAMEOVER
+        READY, RUNNING, GAMEOVER;
     }
 
     private final Bird bird;
@@ -88,6 +90,10 @@ public class GameWorld {
 
     public boolean isReady() {
         return currentState == GameState.READY;
+    }
+
+    public boolean isGameOver() {
+        return currentState == GameState.GAMEOVER;
     }
 
     public void start() {
