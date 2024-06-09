@@ -1,5 +1,6 @@
 package codeguru.zombiebird.gameobjects;
 
+import com.badlogic.gdx.math.Circle;
 import com.badlogic.gdx.math.Vector2;
 
 public class Bird {
@@ -10,6 +11,8 @@ public class Bird {
     private float rotation;
     private int width;
     private int height;
+
+    private final Circle boundingCircle = new Circle();
 
     public Bird(float x, float y, int width, int height) {
         this.width = width;
@@ -27,6 +30,7 @@ public class Bird {
         }
 
         position.add(velocity.cpy().scl(delta));
+        boundingCircle.set(position.x + 9, position.y + 6, 6.5f);
 
         if (velocity.y < 0) {
             rotation -= 600 * delta;
@@ -74,5 +78,9 @@ public class Bird {
 
     public boolean shouldntFlap() {
         return velocity.y > 70;
+    }
+
+    public Circle getBoundingCircle() {
+        return boundingCircle;
     }
 }

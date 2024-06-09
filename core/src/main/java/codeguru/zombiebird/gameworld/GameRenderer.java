@@ -1,6 +1,7 @@
 package codeguru.zombiebird.gameworld;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -131,6 +132,15 @@ public class GameRenderer {
         }
 
         batcher.end();
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.RED);
+        shapeRenderer.circle(
+            bird.getBoundingCircle().x,
+            bird.getBoundingCircle().y,
+            bird.getBoundingCircle().radius
+        );
+        shapeRenderer.end();
     }
 
     private void drawGrass() {
