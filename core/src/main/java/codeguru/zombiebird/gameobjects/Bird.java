@@ -33,6 +33,11 @@ public class Bird {
             velocity.y = 200;
         }
 
+        if (position.y < -13) {
+            position.y = -13;
+            velocity.y = 0;
+        }
+
         position.add(velocity.cpy().scl(delta));
         boundingCircle.set(position.x + 9, position.y + 6, 6.5f);
 
