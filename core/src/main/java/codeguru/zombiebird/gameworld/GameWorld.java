@@ -12,12 +12,14 @@ public class GameWorld {
 
     private final ScrollHandler scroller;
 
-    private Rectangle ground;
+    private final Rectangle ground;
+
+    private int score = 0;
 
 
     public GameWorld(int midPointY) {
         bird = new Bird(33, midPointY - 5, 17, 12);
-        scroller = new ScrollHandler(midPointY + 66);
+        scroller = new ScrollHandler(this, midPointY + 66);
         ground = new Rectangle(0, midPointY + 66, 136, 11);
     }
 
@@ -48,5 +50,13 @@ public class GameWorld {
 
     public ScrollHandler getScroller() {
         return scroller;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void addScore(int increment) {
+        score += increment;
     }
 }
