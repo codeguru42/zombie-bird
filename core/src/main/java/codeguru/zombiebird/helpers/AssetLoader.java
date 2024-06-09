@@ -17,7 +17,7 @@ public class AssetLoader {
 
     public static TextureRegion skullUp, skullDown, bar;
 
-    public static Sound dead;
+    public static Sound dead, flap, coin;
 
     public static void load() {
         texture = new Texture(Gdx.files.internal("data/texture.png"));
@@ -50,9 +50,14 @@ public class AssetLoader {
         bar.flip(false, true);
 
         dead = Gdx.audio.newSound(Gdx.files.internal("data/dead.wav"));
+        flap = Gdx.audio.newSound(Gdx.files.internal("data/flap.wav"));
+        coin = Gdx.audio.newSound(Gdx.files.internal("data/coin.wav"));
     }
 
     public static void dispose() {
         texture.dispose();
+        dead.dispose();
+        flap.dispose();
+        coin.dispose();
     }
 }
