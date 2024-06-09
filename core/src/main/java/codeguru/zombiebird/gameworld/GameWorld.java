@@ -8,6 +8,10 @@ import codeguru.zombiebird.gameobjects.ScrollHandler;
 import codeguru.zombiebird.helpers.AssetLoader;
 
 public class GameWorld {
+    public enum GameState {
+        READY, RUNNING, GAMEOVER
+    }
+
     private final Bird bird;
 
     private final ScrollHandler scroller;
@@ -16,14 +20,35 @@ public class GameWorld {
 
     private int score = 0;
 
+    private final int midPointY;
+
+    private GameState currentState = GameState.READY;
 
     public GameWorld(int midPointY) {
+        this.midPointY = midPointY;
         bird = new Bird(33, midPointY - 5, 17, 12);
         scroller = new ScrollHandler(this, midPointY + 66);
         ground = new Rectangle(0, midPointY + 66, 136, 11);
     }
 
     public void update(float delta) {
+        switch (currentState) {
+            case READY:
+                updateReady(delta);
+                break;
+            case RUNNING:
+                updateRunning(delta);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void updateReady(float delta) {
+
+    }
+
+    public void updateRunning(float delta) {
         if (delta > .15f) {
             delta = .15f;
         }
@@ -41,6 +66,7 @@ public class GameWorld {
             scroller.stop();
             bird.die();
             bird.decelerate();
+            currentState = GameState.GAMEOVER;
         }
     }
 
@@ -58,5 +84,21 @@ public class GameWorld {
 
     public void addScore(int increment) {
         score += increment;
+    }
+
+    public boolean isReady() {
+        return currentState == GameState.READY;
+    }
+
+    public void start() {
+        currentState = GameState.RUNNING;
+    }
+
+    public void restart() {
+        currentState = GameState.READY;
+        score = 0;
+        bird.onRestart(midPointY - 5);
+        scroller.onRestart();
+        currentState = GameState.READY;
     }
 }
