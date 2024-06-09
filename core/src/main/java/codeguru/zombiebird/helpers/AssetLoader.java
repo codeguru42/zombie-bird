@@ -42,6 +42,9 @@ public class AssetLoader {
         skullUp = new TextureRegion(texture, 192, 0, 24, 14);
         skullDown = new TextureRegion(skullUp);
         skullDown.flip(false, true);
+
+        bar = new TextureRegion(texture, 136, 16, 22, 3);
+        bar.flip(false, true);
     }
 
     public static void dispose() {
