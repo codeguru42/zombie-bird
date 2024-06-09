@@ -1,5 +1,6 @@
 package codeguru.zombiebird.gameobjects;
 
+import com.badlogic.gdx.math.Intersector;
 import com.badlogic.gdx.math.Rectangle;
 
 import java.util.Random;
@@ -69,5 +70,16 @@ public class Pipe extends Scrollable {
 
     public Rectangle getBarDown() {
         return barDown;
+    }
+
+    public boolean collides(Bird bird) {
+        if (position.x < bird.getX() + bird.getWidth()) {
+            return Intersector.overlaps(bird.getBoundingCircle(), barUp)
+                || Intersector.overlaps(bird.getBoundingCircle(), barDown)
+                || Intersector.overlaps(bird.getBoundingCircle(), skullUp)
+                || Intersector.overlaps(bird.getBoundingCircle(), skullDown);
+        }
+
+        return false;
     }
 }
