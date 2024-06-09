@@ -1,6 +1,7 @@
 package codeguru.zombiebird.helpers;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -8,6 +9,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AssetLoader {
+    public static Preferences prefs = Gdx.app.getPreferences("ZombieBird");
+
     public static Texture texture;
 
     public static TextureRegion bg, grass;
@@ -60,6 +63,10 @@ public class AssetLoader {
         font.getData().setScale(.25f, -.25f);
         shadow = new BitmapFont(Gdx.files.internal("data/shadow.fnt"));
         shadow.getData().setScale(.25f, -.25f);
+
+        if (!prefs.contains("highScore")) {
+            prefs.putInteger("highScore", 0);
+        }
     }
 
     public static void dispose() {
@@ -69,5 +76,14 @@ public class AssetLoader {
         coin.dispose();
         font.dispose();
         shadow.dispose();
+    }
+
+    public static void setHighScore(int val) {
+        prefs.putInteger("highScore", val);
+        prefs.flush();
+    }
+
+    public static int getHighScore() {
+        return prefs.getInteger("highScore");
     }
 }
